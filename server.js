@@ -18,7 +18,7 @@ app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
 
 // Connect to the Mongo DB
-var MONGODB_URI = process.env.MONGO_URI || "mongodb://localhost/scraperdb";
+var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/scraperdb";
 
 mongoose.connect(MONGODB_URI);
 
