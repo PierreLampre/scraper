@@ -18,7 +18,9 @@ app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
 
 // Connect to the Mongo DB
-mongoose.connect("mongodb://localhost/scraperdb", { useNewUrlParser: true });
+var MONGO_URI = process.env.MONGO_URI || "mongodb://localhost/scraperdb";
+
+mongoose.connect(MONGO_URI);
 
 // Import routes and give the server access to them.
 
