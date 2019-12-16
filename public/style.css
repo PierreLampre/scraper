@@ -1,0 +1,170 @@
+* { 
+  margin: 0;
+  padding: 0;
+}
+
+body { 
+  background-color: black;
+  font-size: 13px;
+  color: white;
+}
+
+#wrapper {
+  display: grid;
+  grid-template-rows: .3r .5fr;
+  grid-template-columns: 1fr .6fr;
+  align-items: start;
+  justify-items: center;
+  padding: 8px 16px;
+  height: 500px;
+}
+
+#h-and-bs {
+  grid-column-start: 1;
+  grid-column-end: 3;
+  grid-row-start: 1;
+  grid-row-end: 2;
+}
+
+.hd {
+  font-family: 'Courier Prime', monospace;
+  color: red;
+}
+
+#articles {
+  grid-column-start: 1;
+  grid-column-end: 2;
+  grid-row-start: 2;
+  grid-row-end: 3;
+  padding: 20px;
+  overflow: scroll;
+  width: 90%;
+  height: 480px;
+}
+
+.button {
+  padding: 3px;
+  border-radius: 7px;
+  color:white;
+  background-color: grey;
+  border: 1px solid rgb(66, 63, 63);
+}
+
+.button:focus {
+  outline: none;
+}
+
+#data {
+  margin: 14px 0px;
+}
+
+#summary {
+  margin: 10px 0px;
+}
+
+#notes {
+  grid-column-start: 2;
+  grid-column-end: 3;
+  grid-row-start: 2;
+  grid-row-end: 3;
+  padding: 20px;
+  display: grid;
+  grid-template-rows: .5fr .2fr 1fr .2fr auto;
+}
+
+#note-head {
+  grid-row-start: 1;
+  grid-row-end: 2;
+}
+
+label {
+  display: block;
+}
+
+#title-section{
+  grid-row-start: 2;
+  grid-row-end: 3;
+}
+
+#body-section {
+  grid-row-start: 3;
+  grid-row-end: 4;
+}
+
+#bodyinput {
+  width: 100%;
+  height: 100%;
+}
+
+#titleinput, #bodyinput {
+  background-color: black;
+  color:white;
+}
+
+#savenote {
+  grid-row-start: 4;
+  grid-row-end: 5;
+  margin: 40px 120px;
+}
+
+#all-notes { 
+  grid-row-start: 5;
+  grid-row-end: 6;
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  padding: 100px 30px 0px 30px;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+.modal-content {
+  background-color: black;
+  color:rgb(76, 240, 76);
+  border: 3px solid rgb(76, 240, 76);
+  width: 40%;
+  height: 10%;
+  display: grid;
+  grid-template-columns: 1fr .01fr;
+  grid-template-rows: .2fr 1fr;
+  grid-template-rows: auto;
+  justify-self: center;
+  align-items: center;
+  justify-items: center;
+  border-radius: 12px;
+}
+
+#message {
+  grid-column-start: 1;
+  grid-column-end: 2;
+  grid-row-start: 2;
+  grid-row-end: 1;
+}
+
+#close {
+  grid-column-start: 2;
+  grid-column-end: 3;
+  grid-row-start: 1;
+  grid-row-end: 2;
+  padding: 0px 12px 0px 12px;
+}
+
+#close:hover {
+  cursor: pointer;
+}
+
+.comments, .comment-input {
+  display: none;
+}
+
+#cmt-box {
+  width: 20rem;
+  height: 5rem;
+  display: block;
+}

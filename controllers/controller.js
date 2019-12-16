@@ -7,7 +7,7 @@ var db = require("../models");
 router.get("/", function(req, res) {
   db.Article.find({
     "saved": false
-  })
+  }).limit(15)
     .then(function (data) {
         var hbsObject = {
             articles: data
@@ -42,7 +42,7 @@ router.get("/scrape", function (req, res) {
         .children(".post-header")
         .children("h2")
         .children("a")
-        .attr("href");
+        .attr("href");    
 
       db.Article.create(result)
         .then(function (dbArticle) {

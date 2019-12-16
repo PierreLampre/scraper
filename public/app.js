@@ -1,63 +1,83 @@
-// $.getJSON("/articles", function(data) {
 
-//   for (var i = 0; i < data.length; i++) {
-//     $("#articles").append("<h3 data-id='" + data[i]._id + "'>" + data[i].title + "</h3><p><strong>Summary: </strong>" + data[i].summary + "</p><a href='" + data[i].link + "' target='_blank'>Article Link</a></p>");
-//   }
-  
-// });
+$(document).ready(function () {
 
-$(document).on("click", "h3", function() {
-  $("#notes").empty();
-
-  var thisId = $(this).attr("data-id");
-
-  $.ajax({
-    method: "GET",
-    url: "/articles/" + thisId
-  })
-    .then(function(data) {
-      console.log(data);
-      $("#notes").append("<h2>" + data.title + "</h2>");
-
-      $("#notes").append("<input id='titleinput' name='title' >");
-
-      $("#notes").append("<textarea id='bodyinput' name='body'></textarea>");
-
-      $("#notes").append("<button data-id='" + data._id + "' id='savenote'>Save Note</button>");
-
-      if (data.note) {
-
-        $("#titleinput").val(data.note.title);
-
-        $("#bodyinput").val(data.note.body);
-
+  $("#scrape").click(function() {
+    
+    $.ajax({
+      url: "/scrape",
+      type: "GET",
+      success: function(data) {
+        console.log(data);
+        $("#articles").empty();
+        $(".modal").css("display", "grid");
+        $("#message").text("Scrape Complete! (Exit Modal To Display Articles)")
+      },
+      error: function() {
+        $(".modal").css("display", "grid");
+        $("#message").text("Scrape Failed :(")
       }
     });
-});
 
-$(document).on("click", "#savenote", function() {
+  });
 
-  var thisId = $(this).attr("data-id");
+  $("#close").click(function() {
+    location.reload(true);
+  });
 
-  $.ajax({
-    method: "POST",
-    url: "/articles/" + thisId,
-    data: {
+  $("#clear").click(function () {
+    $("#articles").empty();
+    $("#articles").text("No articles have been scraped yet.");
+    console.log("Connected");
+  });
 
-      title: $("#titleinput").val(),
- 
-      body: $("#bodyinput").val()
+  $(document).on("click", "#comment-button", function () {
+    $("#notes").empty();
 
-    }
-  })
-    .then(function(data) {
+    var thisId = $(this).attr("data-id");
 
-      console.log(data);
+    $.ajax({
+      method: "GET",
+      url: "/articles/" + thisId
+    })
+      .then(function (data) {
+        console.log(data);
 
-      $("#notes").empty();
+        $("#notes").append("<h2 class='hd' id='note-head'>" + data.title + "</h2>");
 
-    });
+        $("#notes").append("<div id='title-section'><label name='title'>Name:</label><input id='titleinput' name='title'></div>");
 
-  $("#titleinput").val("");
-  $("#bodyinput").val("");
+        $("#notes").append("<div id='body-section'><label name='body'>Note:</label><textarea id='bodyinput' name='body'></textarea></div>");
+
+        $("#notes").append("<button data-id='" + data._id + "' id='savenote' class='button'>Post Comment</button>");
+
+        $("#notes").append("<div id='all-notes'></div>");
+
+      });
+  });
+
+  $(document).on("click", "#savenote", function () {
+
+    var thisId = $(this).attr("data-id");
+
+    $.ajax({
+      method: "POST",
+      url: "/articles/" + thisId,
+      data: {
+
+        title: $("#titleinput").val(),
+
+        body: $("#bodyinput").val()
+
+      }
+    })
+      .then(function (data) {
+
+        console.log(data);
+
+      });
+
+    $("#titleinput").val("");
+    $("#bodyinput").val("");
+  });
+
 });

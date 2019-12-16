@@ -1,14 +1,30 @@
 <div id="wrapper">
-  <h1>thehardtimes/emo-screamo scraper</h1>
-  <h2><i>If you can do this...the homework should be no problem.</i></h2>
+  <div id="h-and-bs">
+    <h1 class="hd">thehardtimes/emo-screamo scraper</h1>
+    <button id="scrape" class="button">Scrape Articles</button><button id="clear" class="button">Clear Articles</button>
+  </div>
+
   <div id="articles">
     {{#each articles}}
-    <h3>{{title}}</h3>
-    <p>{{summary}}</p>
-    <a href={{link}}>Article Link</a>
+    <div id="data">
+      <h3 class="hd">{{title}}</h3>
+      <p id="summary">{{summary}}</p>
+      <a href={{link}} target="_blank"><button id="article-button" class="button">Article Link</button></a>
+      <button id="comment-button" data-id={{_id}} class="button">Leave Comment</button>
+    </div>
     {{/each}}
   </div>
+
   <div id="notes">
+
+  </div>
+
+  <div id="aModal" class="modal">
+
+    <div class="modal-content">
+      <span id="close">&times;</span>
+      <span id="message"></span>
+    </div>
 
   </div>
 </div>
